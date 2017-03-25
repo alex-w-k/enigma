@@ -14,6 +14,7 @@ class EncryptorTest < MiniTest::Test
     encrypt = Encryptor.new
     assert_equal 39, encrypt.character("g")
     assert_equal 68, encrypt.character("9")
+
   end
 
 end

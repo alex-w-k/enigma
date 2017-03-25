@@ -33,5 +33,4 @@ class KeyGen
     key_b = @key[3] + @key[4]
     key_b.to_i
   end
- 
 end
