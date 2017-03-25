@@ -10,6 +10,7 @@ class KeyGen
     chars = *(0..9)
     (0..length).map {chars.sample}.join
   end
+  
 end
 
 binding.pry
