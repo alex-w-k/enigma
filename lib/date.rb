@@ -1,5 +1,3 @@
-require "pry"
-
 class Date
   attr_reader :time
 
@@ -17,10 +15,6 @@ class Date
 
   def offset
     offset = ((self.time.to_i) ** 2).to_s
-    offset.split(//).last(4).join.to_i
+    offset.split(//).last(4).join
   end
-
 end
-
-binding.pry
-""

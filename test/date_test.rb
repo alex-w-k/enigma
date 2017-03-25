@@ -17,7 +17,7 @@ class DateTest < MiniTest::Test
 
   def test_time_and_offset
     date = Date.new
-    assert_equal 4, date.offset.to_s
+    assert_equal 4, date.offset.length
   end
 
   
