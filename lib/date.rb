@@ -1,7 +1,10 @@
+require "pry"
+
 class Date
-  attr_reader :time
+  attr_reader :time, :offset_full, :offset_a, :offset_b, :offset_c, :offset_d
 
   def initialize
+    @offset_c = offset_c
   end
 
   def time
@@ -13,8 +16,29 @@ class Date
     temp
   end
 
-  def offset
+  def offset_full
     offset = ((self.time.to_i) ** 2).to_s
     offset.split(//).last(4).join
   end
+
+  def offset_a
+    offset_full[0].to_i
+  end
+
+  def offset_b
+    offset_full[1].to_i
+  end
+
+  def offset_c
+    offset_full[2].to_i
+  end
+
+  def offset_d
+    offset_full[3].to_i
+  end
+
 end
+
+date = Date.new
+binding.pry
+""
