@@ -1,5 +1,5 @@
-# require './lib/encryptor.rb'
-# require 'pry'
+require 'pry'
+require './lib/date.rb'
 
 class KeyGen
   attr_reader :time,
@@ -11,7 +11,8 @@ class KeyGen
               :key_d
 
   def initialize
-    @key = self.key_generator
+    @date = Date.new
+    @key  = self.key_generator
   end
 
   def key_generator
@@ -51,7 +52,5 @@ class KeyGen
     key_d = key[3] + key[4]
     key_d.to_i + offset[3].to_i
   end
+  
 end
-
-# binding.pry
-# ""
