@@ -1,5 +1,5 @@
 # require './lib/encryptor.rb'
-require 'pry'
+# require 'pry'
 
 class KeyGen
   attr_reader :time,
@@ -53,6 +53,5 @@ class KeyGen
   end
 end
 
-key = KeyGen.new
-binding.pry
-""
+# binding.pry
+# ""
