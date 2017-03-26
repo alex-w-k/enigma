@@ -1,9 +1,10 @@
 require './lib/keygen'
 class Encryptor
-  attr_reader :character
+  attr_reader :character,
+              :encrypt,
+              :message_splitter
 
   def initialize
-
   end
 
   def character(char)
@@ -11,8 +12,16 @@ class Encryptor
     character_map[char]
   end
 
+  def message_splitter(message)
+    message.delete(' ').split("").map { |x| x.to_s }
+  end
+
+  def encrypt(message)
+    character(message_splitter(message)[0])
+  end
+
 end
 
-encrypt = Encryptor.new
+e = Encryptor.new
 key = KeyGen.new
 binding.pry
