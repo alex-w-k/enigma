@@ -1,7 +1,7 @@
 require "pry"
 
 class Date
-  attr_reader :time, :offset_full, :offset_a, :offset_b, :offset_c, :offset_d
+  attr_accessor :time, :offset_full, :offset_a, :offset_b, :offset_c, :offset_d
 
   def initialize
     @offset_c = offset_c
@@ -26,7 +26,7 @@ class Date
   end
 
   def offset_b
-    offset_full[1].to_i
+    offset_full[1]
   end
 
   def offset_c
