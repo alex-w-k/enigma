@@ -20,4 +20,16 @@ class KeyGenTest < MiniTest::Test
     assert_equal key.full_key[0..1], key.key_a.to_s
   end
 
+  def test_offset
+    key = KeyGen.new
+    assert_equal 0, key.add_offset
+  end
+
+  def test_key_a_offset
+    key = KeyGen.new
+    date = Date.new
+    assert_equal (date.offset[0] + self.key_a), a_with_offset
+  end
+  
+
 end
