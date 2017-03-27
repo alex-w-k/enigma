@@ -6,26 +6,39 @@ class Encryptor
               :encrypt,
               :message_splitter
 
-  def initialize
+  def initialize(message)
+    @key = KeyGen.new
+    @message = message
   end
 
   def character(char)
-    character_map = Hash[(('A'..'z').to_a + ('0'..'9').to_a).zip((1..68).to_a)]
+    chars = (('A'..'z').to_a + ('!'..'?').to_a)
+    chars << ' '
+    count = chars.count
+    character_map = Hash[chars.zip((1..90).to_a)]
     character_map[char]
   end
 
-  def splitter(message)
-    message.delete(' ').split("").map { |x| x.to_s }
+  def splitter
+    @message.split("").map { |x| x.to_s }
+  end
+
+  def split_into_array_of_arrays
+    @message = message.split("")
+    @message = message.each_slice(4).to_a
   end
 
   def encrypt(message)
-    marker = 0
+    length = message.length
     char_map_numbers = []
-    until marker == message.delete(' ').length
+    marker = 0
+    until marker == length
       char_map_numbers << character(splitter(message)[marker])
-      marker += 1
+      marker +=1
+      char_map_numbers.each_slice(4) do |x|
+      p x + @key.key_d
+      end
     end
-    char_map_numbers.each_slice(4) { |n| p n + $key.key_d}
   end
 
   def cypher_a
@@ -43,6 +56,6 @@ class Encryptor
 
 end
 
-e = Encryptor.new
+e = Encryptor.new("this is a test message")
 $key = KeyGen.new
 binding.pry

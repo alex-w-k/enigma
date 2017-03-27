@@ -16,8 +16,8 @@ class EncryptorTest < MiniTest::Test
     assert_equal 68, encrypt.character("9")
   end
 
-  def test_message_splitter
-    encrypt = Encryptor.new
-    assert_equal ["t", "e", "s", "t", "t", "h", "i", "s", "m", "e", "s", "s", "a", "g", "e"], encrypt.splitter("test this message")
-  end
+  def test_split_into_subarrays
+
+  end 
+
 end
