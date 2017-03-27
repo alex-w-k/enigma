@@ -1,48 +1,62 @@
+require 'pry'
 require './lib/keygen'
-require "pry"
 
 class Encryptor
   attr_reader :character,
               :encrypt,
               :message_splitter
 
-  def initialize(message)
+  def initialize
     @key = KeyGen.new
-    @message = message
+    @message = ""
+  end
+
+  def message
+    @message
   end
 
   def character(char)
-    chars = (('A'..'z').to_a + ('!'..'?').to_a)
-    chars << ' '
-    count = chars.count
-    character_map = Hash[chars.zip((1..90).to_a)]
     character_map[char]
+  end
+
+  def character_lookup(number)
+    character_map.key(number)
+  end
+
+  def character_map
+    @character_map ||= Hash[chars.zip((1..chars.count).to_a)]
+  end
+
+  def chars
+    @chars ||= (('A'..'z').to_a + ('!'..'@').to_a + [" "] + ('😀'..'😾').to_a + ["🖕"])
   end
 
   def splitter
     @message.split("").map { |x| x.to_s }
   end
 
-  def split_into_array_of_arrays
-    @message = message.split("")
-    @message = message.each_slice(4).to_a
+  def split_into_subarrays
+    @message = @message.split("")
+    @message = @message.each_slice(4).to_a
   end
 
   def encrypt(message)
-    length = message.length
-    char_map_numbers = []
-    marker = 0
-    until marker == length
-      char_map_numbers << character(splitter(message)[marker])
-      marker +=1
-      char_map_numbers.each_slice(4) do |x|
-      p x + @key.key_d
-      end
-    end
+    @message = message
   end
 
   def cypher_a
-
+    temp = @message.map do |first|
+      character(first[0]) + @key.key_a
+    end
+    temp = temp.map do |lookup|
+      if lookup > 155
+        155 - lookup
+        character_lookup(lookup)
+      else
+        character_lookup(lookup)
+      end
+    end
+    temp
   end
 
   def cypher_b
@@ -56,6 +70,5 @@ class Encryptor
 
 end
 
-e = Encryptor.new("this is a test message")
-$key = KeyGen.new
 binding.pry
+""

@@ -1,5 +1,3 @@
-require "pry"
-
 class Date
   attr_accessor :time, :offset_full, :offset_a, :offset_b, :offset_c, :offset_d
 
@@ -38,7 +36,3 @@ class Date
   end
 
 end
-
-date = Date.new
-binding.pry
-""

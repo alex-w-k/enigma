@@ -13,11 +13,12 @@ class EncryptorTest < MiniTest::Test
   def test_character_map
     encrypt = Encryptor.new
     assert_equal 39, encrypt.character("g")
-    assert_equal 68, encrypt.character("9")
+    assert_equal 83, encrypt.character("9")
   end
 
   def test_split_into_subarrays
-
+    e = Encryptor.new
+    e.encrypt("This is a test message")
   end 
 
 end
