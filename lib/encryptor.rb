@@ -32,40 +32,83 @@ class Encryptor
   end
 
   def splitter
-    @message.split("").map { |x| x.to_s }
+    @message.split("")
   end
 
   def split_into_subarrays
-    @message = @message.split("")
-    @message = @message.each_slice(4).to_a
+    subarray_message = splitter.each_slice(4).to_a
   end
 
   def encrypt(message)
     @message = message
   end
 
-  def cypher_a
-    temp = @message.map do |first|
+  def cypher_a_numbers
+    temp = split_into_subarrays.map do |first|
       character(first[0]) + @key.key_a
     end
-    temp = temp.map do |lookup|
-      if lookup > 155
-        155 - lookup
+  end
+
+  def cypher_b_numbers
+    temp = split_into_subarrays.map do |num|
+      character(num[1]) + @key.key_b
+    end
+  end
+
+  def cypher_c_numbers
+    temp = split_into_subarrays.map do |num|
+      character(num[2]) + @key.key_c
+    end
+  end
+
+  def cypher_d_numbers
+    temp = split_into_subarrays.map do |num|
+      character(num[3]) + @key.key_d
+    end
+  end
+
+  def cypher_a
+    temp = cypher_a_numbers.map do |lookup|
+      if lookup > chars.count
+        lookup = (lookup - chars.count)
         character_lookup(lookup)
       else
         character_lookup(lookup)
       end
     end
-    temp
   end
 
   def cypher_b
+    temp = cypher_b_numbers.map do |lookup|
+      if lookup > chars.count
+        lookup = (lookup - chars.count)
+        character_lookup(lookup)
+      else
+        character_lookup(lookup)
+      end
+    end
   end
 
   def cypher_c
+    temp = cypher_c_numbers.map do |lookup|
+      if lookup > chars.count
+        lookup = (lookup - chars.count)
+        character_lookup(lookup)
+      else
+        character_lookup(lookup)
+      end
+    end
   end
 
   def cypher_d
+    temp = cypher_d_numbers.map do |lookup|
+      if lookup > chars.count
+        lookup = (lookup - chars.count)
+        character_lookup(lookup)
+      else
+        character_lookup(lookup)
+      end
+    end
   end
 
 end
