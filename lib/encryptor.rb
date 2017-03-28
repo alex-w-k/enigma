@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/keygen'
 
 class Encryptor
@@ -65,13 +64,7 @@ class Encryptor
       @encrypted << @rotation_d[letter]
       @rotation_count = 1
     end
-    @encrypted.join
   end
   @encrypted.join
+  end
 end
-binding.pry
-end
-
-e = Encryptor.new
-binding.pry
-""
