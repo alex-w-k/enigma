@@ -1,6 +1,3 @@
-require 'pry'
-require './lib/date.rb'
-
 class KeyGen
   attr_reader :time,
               :key,
