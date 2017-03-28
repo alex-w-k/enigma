@@ -63,8 +63,9 @@ class Encryptor
     elsif @rotation_count == 4
       @encrypted << @rotation_d[letter]
       @rotation_count = 1
+      end
     end
-  end
-  @encrypted.join
+    @encrypted.join
   end
 end
+
