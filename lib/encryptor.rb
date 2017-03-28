@@ -111,7 +111,11 @@ class Encryptor
     end
   end
 
-end
+  def collate 
+    array = [cypher_a, cypher_b, cypher_c, cypher_d]
+    array.transpose.flatten.join
+  end
 
+end
 binding.pry
 ""

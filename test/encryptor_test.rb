@@ -19,6 +19,7 @@ class EncryptorTest < MiniTest::Test
   def test_split_into_subarrays
     e = Encryptor.new
     e.encrypt("This is a test message")
+
   end 
 
 end
