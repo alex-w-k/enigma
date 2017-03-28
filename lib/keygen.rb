@@ -11,7 +11,7 @@ class KeyGen
               :key_d
 
   def initialize
-    @date = Date.new
+
     @key  = self.key_generator
   end
 
@@ -52,5 +52,5 @@ class KeyGen
     key_d = key[3] + key[4]
     key_d.to_i + offset[3].to_i
   end
-  
+
 end
