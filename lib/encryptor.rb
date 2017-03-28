@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/keygen'
 
 class Encryptor
@@ -71,7 +70,3 @@ class Encryptor
 end
 binding.pry
 end
-
-e = Encryptor.new
-binding.pry
-""
