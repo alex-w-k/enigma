@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/encryptor'
 
 class Decryptor < Encryptor
@@ -48,7 +47,3 @@ class Decryptor < Encryptor
   @decrypted.join
   end
 end
-
-d = Decryptor.new
-binding.pry
-""
