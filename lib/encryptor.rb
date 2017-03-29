@@ -1,5 +1,3 @@
-require './lib/keygen'
-
 class Encryptor
   attr_reader :encrypt,
               :rotation_a,

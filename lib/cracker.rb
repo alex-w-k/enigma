@@ -1,10 +1,9 @@
-require 'pry'
 require './lib/keygen'
 require './lib/decryptor'
 
 class Cracker < Decryptor
 
-  attr_reader :decrypted
+  attr_reader :decrypted, :crack
 
   def crack(message, date)
     @message = message
@@ -23,8 +22,8 @@ class Cracker < Decryptor
     @rotation_c = rotate(@incoming_key.key_c).invert
     @rotation_d = rotate(@incoming_key.key_d).invert
   end
-      
-  
+
+
   def decryption_rotator(message)
     @message = message
     @decrypted = []
@@ -67,7 +66,3 @@ class Cracker < Decryptor
   end
 
 end
-
-c = Cracker.new
-binding.pry
-""

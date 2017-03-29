@@ -1,8 +1,8 @@
 require './lib/encryptor'
 
 class Decryptor < Encryptor
-  attr_reader :decrypt_rotation_a, :decrypt_rotation_b, :decrypt_rotation_c, :decrypt_rotation_d
-  attr_accessor :decrypted
+  attr_reader :message, :rotation_a, :rotation_b, :rotation_c, :rotation_d, :incoming_key
+  attr_accessor :decrypted, :decryption_hash
 
   def decrypt(message = "", key = @key.key, date = @key.time)
     @incoming_key = KeyGen.new(key.to_s, date)
