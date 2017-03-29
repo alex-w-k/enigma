@@ -1,16 +1,28 @@
 require './lib/encryptor.rb'
 
 
-class Encrypt < Encryptor
-  
-  encrypt_message = Encryptor.new
+class Encrypt
+	args = *ARGV
 
-  filename = ARGV[0]
-  text = File.read(filename)
-  encrypt_message.encrypt(text)
+	encrypt_instance = Encryptor.new
 
-  encrypted_file = ARGV[1]
-  message = encrypt_message.encrypt.join
-  File.write(encrypted_file, message)
+	filename = ARGV[0]
+
+	raw_text = File.read(filename)
+
+	edited_raw_text = raw_text.gsub("\n", " ")
+
+	encrypt_instance.encrypt(edited_raw_text)
+
+	output = encrypt_instance.encrypted.join
+
+	encrypted_filename = ARGV[1]
+
+	encrypted = open(encrypted_filename, "w")
+
+	File.write(encrypted_filename, output)
+	puts "Created '#{encrypted_filename}' with the key #{encrypt_instance.key.key}"
+
 
 end
+
