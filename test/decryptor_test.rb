@@ -16,14 +16,14 @@ class DecryptorTest < MiniTest::Test
     assert_equal "test", decrypt.message
   end
 
-  def test_rotation_without_changes
+  def test_rotation
     decrypt = Decryptor.new
     chars = (('A'..'z').to_a + ('!'..'@').to_a + [" "] + ('😀'..'😾').to_a + ["🖕"])
     assert_equal 155, chars.count
-    assert true, decrypt.rotation_a
-    assert true, decrypt.rotation_b
-    assert true, decrypt.rotation_c
-    assert true, decrypt.rotation_d
+    decrypt.decryption_hash
+    refute_equal decrypt.rotation_a, decrypt.rotation_b
+    refute_equal decrypt.rotation_b, decrypt.rotation_c
+    refute_equal decrypt.rotation_c, decrypt.rotation_d
   end
 
 
@@ -39,5 +39,6 @@ class DecryptorTest < MiniTest::Test
     decrypt = Decryptor.new
     assert_equal "this is a test ..end..", decrypt.decrypt("&.😭😱😋/😷Zm😟😸😣%:`G:+😲😢:😌", 12881)
     assert_equal decrypt.incoming_key , decrypt.incoming_key
+    #assert_equal 22, decrypted.@encrypted
   end
 end
