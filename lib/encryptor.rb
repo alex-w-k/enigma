@@ -1,5 +1,3 @@
-require './lib/keygen'
-
 class Encryptor
   attr_reader :character,
               :encrypt,

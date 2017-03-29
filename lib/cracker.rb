@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/keygen'
 require './lib/decryptor'
 
@@ -67,7 +66,3 @@ class Cracker < Decryptor
   end
 
 end
-
-c = Cracker.new
-binding.pry
-""
