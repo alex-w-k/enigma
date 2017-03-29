@@ -21,29 +21,28 @@ class Decryptor < Encryptor
     @rotation_b = rotate(@incoming_key.key_b).invert
     @rotation_c = rotate(@incoming_key.key_c).invert
     @rotation_d = rotate(@incoming_key.key_d).invert
-    binding.pry
   end
 
   def decryption_rotator(message)
-  @message = message
-  @decrypted = []
-  @rotation_count = 1
-  letters = message.split("")
-  letters.each do |letter|
-    if @rotation_count == 1
-      @decrypted << @rotation_a[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 2
-      @decrypted << @rotation_b[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 3
-      @decrypted << @rotation_c[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 4
-      @decrypted << @rotation_d[letter]
-      @rotation_count = 1
-    end
-  end
-  @decrypted.join
+    @message = message
+    @decrypted = []
+    @rotation_count = 1
+    letters = message.split("")
+    letters.each do |letter|
+      if @rotation_count == 1
+        @decrypted << @rotation_a[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 2
+        @decrypted << @rotation_b[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 3
+        @decrypted << @rotation_c[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 4
+        @decrypted << @rotation_d[letter]
+        @rotation_count = 1
+        end
+      end
+    @decrypted.join
   end
 end

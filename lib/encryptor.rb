@@ -1,13 +1,12 @@
 require './lib/keygen'
 
 class Encryptor
-  attr_reader :character,
-              :encrypt,
-              :message_splitter,
+  attr_reader :encrypt,
               :rotation_a,
               :rotation_b,
               :rotation_c,
-              :rotation_d
+              :rotation_d,
+              :key
 
   attr_accessor :encrypted, :message
   def initialize
@@ -19,16 +18,13 @@ class Encryptor
     @message
   end
 
-  def key
-    @key.key
-  end
-
   def chars
-    @chars ||= (('A'..'z').to_a + ('!'..'@').to_a + [" "] + ('😀'..'😾').to_a + ["🖕"])
+    @chars ||= ((' '..'z').to_a + ('😀'..'😾').to_a + ["🖕"])
   end
 
   def encrypt(message = "", key = @key.key, date = @key.time)
     @message = message
+    @key = KeyGen.new(key.to_s, date)
     create_encryption_hash
     encryption_rotator(message)
   end
@@ -46,26 +42,25 @@ class Encryptor
   end
 
   def encryption_rotator(message)
-  @message = message
-  @encrypted = []
-  @rotation_count = 1
-  letters = message.split("")
-  letters.each do |letter|
-    if @rotation_count == 1
-      @encrypted << @rotation_a[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 2
-      @encrypted << @rotation_b[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 3
-      @encrypted << @rotation_c[letter]
-      @rotation_count += 1
-    elsif @rotation_count == 4
-      @encrypted << @rotation_d[letter]
-      @rotation_count = 1
+    @message = message
+    @encrypted = []
+    @rotation_count = 1
+    letters = message.split("")
+    letters.each do |letter|
+      if @rotation_count == 1
+        @encrypted << @rotation_a[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 2
+        @encrypted << @rotation_b[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 3
+        @encrypted << @rotation_c[letter]
+        @rotation_count += 1
+      elsif @rotation_count == 4
+        @encrypted << @rotation_d[letter]
+        @rotation_count = 1
+        end
       end
-    end
-    @encrypted.join
+      @encrypted.join
   end
 end
-
