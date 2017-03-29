@@ -65,5 +65,3 @@ class Encryptor
       @encrypted.join
   end
 end
-binding.pry
-""

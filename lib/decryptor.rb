@@ -25,6 +25,7 @@ class Decryptor < Encryptor
   end
 
   def decryption_rotator(message)
+    binding.pry
     @message = message
     @decrypted = []
     @rotation_count = 1
@@ -47,5 +48,3 @@ class Decryptor < Encryptor
     @decrypted.join
   end
 end
-binding.pry
-""
