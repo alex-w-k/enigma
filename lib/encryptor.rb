@@ -1,4 +1,5 @@
 require './lib/keygen.rb'
+require "pry"
 
 class Encryptor
   attr_reader :encrypt,
@@ -64,3 +65,5 @@ class Encryptor
       @encrypted.join
   end
 end
+binding.pry
+""

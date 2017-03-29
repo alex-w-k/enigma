@@ -1,4 +1,5 @@
 require './lib/encryptor'
+require "pry"
 
 class Decryptor < Encryptor
   attr_reader :message, :rotation_a, :rotation_b, :rotation_c, :rotation_d, :incoming_key
@@ -46,3 +47,5 @@ class Decryptor < Encryptor
     @decrypted.join
   end
 end
+binding.pry
+""
