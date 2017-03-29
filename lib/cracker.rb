@@ -3,7 +3,7 @@ require './lib/decryptor'
 
 class Cracker < Decryptor
 
-  attr_reader :decrypted, :crack
+  attr_reader :decrypted, :crack, :key
 
   def crack(message, date)
     @message = message
@@ -62,6 +62,7 @@ class Cracker < Decryptor
         i += 1
       end
     end
+    @key = i
     @decrypted.join
   end
 

@@ -39,6 +39,5 @@ class DecryptorTest < MiniTest::Test
     decrypt = Decryptor.new
     assert_equal "this is a test ..end..", decrypt.decrypt("😰😩😷😷W😪!_😝\\\"😩😯😵ime😦😼😨ej", 55654)
     assert_equal decrypt.incoming_key , decrypt.incoming_key
-    #assert_equal 22, decrypted.@encrypted
   end
 end
