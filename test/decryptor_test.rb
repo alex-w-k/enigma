@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/decryptor.rb'
 
+
 class DecryptorTest < MiniTest::Test
 
   def test_init
@@ -20,10 +21,9 @@ class DecryptorTest < MiniTest::Test
     decrypt = Decryptor.new
     chars = (('A'..'z').to_a + ('!'..'@').to_a + [" "] + ('😀'..'😾').to_a + ["🖕"])
     assert_equal 155, chars.count
-    decrypt.decryption_hash
-    refute_equal decrypt.rotation_a, decrypt.rotation_b
-    refute_equal decrypt.rotation_b, decrypt.rotation_c
-    refute_equal decrypt.rotation_c, decrypt.rotation_d
+    assert_nil decrypt.rotation_a, decrypt.rotation_b
+    assert_nil decrypt.rotation_b, decrypt.rotation_c
+    assert_nil decrypt.rotation_c, decrypt.rotation_d
   end
 
 
