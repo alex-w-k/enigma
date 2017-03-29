@@ -1,3 +1,5 @@
+require './lib/keygen.rb'
+
 class Encryptor
   attr_reader :encrypt,
               :rotation_a,
