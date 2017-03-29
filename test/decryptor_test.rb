@@ -37,7 +37,7 @@ class DecryptorTest < MiniTest::Test
 
   def test_decryption_final
     decrypt = Decryptor.new
-    assert_equal "this is a test ..end..", decrypt.decrypt("&.😭😱😋/😷Zm😟😸😣%:`G:+😲😢:😌", 12881)
+    assert_equal "this is a test ..end..", decrypt.decrypt("&.😭😱😋/😷Zm😟😸😣%:`G:+😲😢:😌", 280317)
     assert_equal decrypt.incoming_key , decrypt.incoming_key
     #assert_equal 22, decrypted.@encrypted
   end
