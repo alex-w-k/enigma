@@ -1,7 +1,8 @@
 require './lib/encryptor'
+require "pry"
 
 class Decryptor < Encryptor
-  attr_reader :decrypt_rotation_a, :decrypt_rotation_b, :decrypt_rotation_c, :decrypt_rotation_d
+  attr_reader :message, :rotation_a, :rotation_b, :rotation_c, :rotation_d, :incoming_key
   attr_accessor :decrypted
 
   def decrypt(message = "", key = @key.key, date = @key.time)
@@ -21,7 +22,6 @@ class Decryptor < Encryptor
     @rotation_b = rotate(@incoming_key.key_b).invert
     @rotation_c = rotate(@incoming_key.key_c).invert
     @rotation_d = rotate(@incoming_key.key_d).invert
-    binding.pry
   end
 
   def decryption_rotator(message)
@@ -47,3 +47,7 @@ class Decryptor < Encryptor
   @decrypted.join
   end
 end
+
+d = Decryptor.new
+binding.pry
+""

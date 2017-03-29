@@ -68,4 +68,3 @@ class Encryptor
     @encrypted.join
   end
 end
-
