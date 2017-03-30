@@ -1,5 +1,4 @@
 require './lib/encryptor'
-require "pry"
 
 class Decryptor < Encryptor
   attr_reader :message, :rotation_a, :rotation_b, :rotation_c, :rotation_d, :incoming_key
@@ -25,7 +24,6 @@ class Decryptor < Encryptor
   end
 
   def decryption_rotator(message)
-    binding.pry
     @message = message
     @decrypted = []
     @rotation_count = 1
