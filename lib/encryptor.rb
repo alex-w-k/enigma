@@ -22,7 +22,7 @@ class Encryptor
     @chars ||= ((' '..'z').to_a + ('😀'..'😾').to_a + ["🖕"])
   end
 
-  def encrypt(args)
+  def encrypt(args = {})
     @message = args[:message]
     @key = KeyGen.new(args[:key])
     create_encryption_hash
