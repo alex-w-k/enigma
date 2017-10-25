@@ -7,9 +7,9 @@ class KeyGen
               :key_c,
               :key_d
 
-  def initialize(key = self.key_generator, date = self.time)
-    @key  = key
-    @date = date
+  def initialize(args = {})
+    args[:key] ? @key = args[:key] : @key = self.key_generator
+    args[:date] ? @date = args[:date] : @date = self.time
   end
 
   def key_generator

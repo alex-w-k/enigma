@@ -24,7 +24,7 @@ class Encryptor
 
   def encrypt(args)
     @message = args[:message]
-    @key = KeyGen.new(key.to_s, date)
+    @key = KeyGen.new(args[:key])
     create_encryption_hash
     encryption_rotator(message)
   end

@@ -16,7 +16,7 @@ class EncryptorTest < MiniTest::Test
 
   def test_encryptor_can_accept_message_key_and_date
     e = Encryptor.new
-    e.encrypt("This is soooooo secret", "12345")
+    e.encrypt({message: "This is soooooo secret", key: {key: '12345', date: '290317'}})
     assert_equal "This is soooooo secret", e.message
     assert_equal "12345", e.key.key
   end
@@ -50,18 +50,18 @@ class EncryptorTest < MiniTest::Test
 
   def test_encryptor_can_encrypt_and_is_string
     e = Encryptor.new
-    refute_equal "hello", e.encrypt(message: "hello")
-    assert_instance_of String, e.encrypt("hello")
+    refute_equal "hello", e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
+    assert_instance_of String, e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
   end
 
   def test_can_encryptor_encrypt_when_given_key_and_is_string
     e = Encryptor.new
-    refute_equal "hello", e.encrypt({message: "hello", key: '12345', date: '290317'})
-    assert_instance_of String, e.encrypt("hello", 23456)
+    refute_equal "hello", e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
+    assert_instance_of String, e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
   end
 
   def test_it_actually_encrypts_something_correctly
     e = Encryptor.new
-    assert_equal "T😅😛😧😀", e.encrypt({message: "Hello", key: "12345", date: "290317"})
+    assert_equal "t😅😛😧😀", e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
   end
 end
