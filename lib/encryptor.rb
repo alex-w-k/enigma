@@ -39,29 +39,32 @@ class Encryptor
   end
 
   def encryption_rotator(message)
-    @message = message
     @encrypted = []
     @rotation_count = 1
     letters = message.split("")
     letters.each do |letter|
-      if @rotation_count == 1
-        @encrypted << @rotation_a[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 2
-        @encrypted << @rotation_b[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 3
-        @encrypted << @rotation_c[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 4
-        @encrypted << @rotation_d[letter]
-        @rotation_count = 1
-      end
+      encrypt_and_rotate(letter)
     end
     @encrypted.join
   end
 
   private
+
+  def encrypt_and_rotate(letter)
+    if @rotation_count == 1
+      @encrypted << @rotation_a[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 2
+      @encrypted << @rotation_b[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 3
+      @encrypted << @rotation_c[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 4
+      @encrypted << @rotation_d[letter]
+      @rotation_count = 1
+    end
+  end
 
   def message_error
     raise RuntimeError.new('Message not supplied, please check syntax and try again')
