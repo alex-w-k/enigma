@@ -71,6 +71,5 @@ class EncryptorTest < MiniTest::Test
     assert_raises RuntimeError do
       e.encrypt()
     end
-
   end
 end

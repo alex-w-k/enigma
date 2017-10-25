@@ -9,13 +9,10 @@ class Encryptor
               :key
 
   attr_accessor :encrypted, :message
+
   def initialize
     @key = KeyGen.new
     @message = ""
-  end
-
-  def message
-    @message
   end
 
   def custom_chars
