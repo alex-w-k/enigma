@@ -32,10 +32,10 @@ class Encryptor
   end
 
   def create_encryption_hash
-    @rotation_a = rotate(@key.key_a)
-    @rotation_b = rotate(@key.key_b)
-    @rotation_c = rotate(@key.key_c)
-    @rotation_d = rotate(@key.key_d)
+    @rotation_a = rotate(key.key_a)
+    @rotation_b = rotate(key.key_b)
+    @rotation_c = rotate(key.key_c)
+    @rotation_d = rotate(key.key_d)
   end
 
   def encryption_rotator(message)
