@@ -5,7 +5,8 @@ class Decryptor < Encryptor
   attr_accessor :decrypted, :decryption_hash
 
   def decrypt(message = "", key = @key.key, date = @key.time)
-    @incoming_key = KeyGen.new(key.to_s, date)
+    key_thing = {key: key, date: date}
+    @incoming_key = KeyGen.new(key_thing)
     @message = message
     decryption_hash
     decryption_rotator(message)
@@ -14,6 +15,22 @@ class Decryptor < Encryptor
   def rotate(key)
     rotated_characters = custom_chars.rotate(key.to_i)
     Hash[custom_chars.zip(rotated_characters)]
+  end
+
+  def decrypt_and_rotate(decrypted, letter)
+    if @rotation_count == 1
+      decrypted << @rotation_a[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 2
+      decrypted << @rotation_b[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 3
+      decrypted << @rotation_c[letter]
+      @rotation_count += 1
+    elsif @rotation_count == 4
+      decrypted << @rotation_d[letter]
+      @rotation_count = 1
+    end
   end
 
   def decryption_hash
@@ -26,22 +43,10 @@ class Decryptor < Encryptor
   def decryption_rotator(message)
     message = message
     decrypted = []
-    rotation_count = 1
+    @rotation_count = 1
     letters = message.split("")
     letters.each do |letter|
-      if rotation_count == 1
-        decrypted << @rotation_a[letter]
-        rotation_count += 1
-      elsif rotation_count == 2
-        decrypted << @rotation_b[letter]
-        rotation_count += 1
-      elsif rotation_count == 3
-        decrypted << @rotation_c[letter]
-        rotation_count += 1
-      elsif rotation_count == 4
-        decrypted << @rotation_d[letter]
-        rotation_count = 1
-      end
+      decrypt_and_rotate(decrypted, letter)
     end
     decrypted.join
   end

@@ -39,29 +39,29 @@ class Encryptor
   end
 
   def encryption_rotator(message)
-    @encrypted = []
+    encrypted = []
     @rotation_count = 1
     letters = message.split("")
     letters.each do |letter|
-      encrypt_and_rotate(letter)
+      encrypt_and_rotate(encrypted, letter)
     end
-    @encrypted.join
+    encrypted.join
   end
 
   private
 
-  def encrypt_and_rotate(letter)
+  def encrypt_and_rotate(encrypted, letter)
     if @rotation_count == 1
-      @encrypted << @rotation_a[letter]
+      encrypted << @rotation_a[letter]
       @rotation_count += 1
     elsif @rotation_count == 2
-      @encrypted << @rotation_b[letter]
+      encrypted << @rotation_b[letter]
       @rotation_count += 1
     elsif @rotation_count == 3
-      @encrypted << @rotation_c[letter]
+      encrypted << @rotation_c[letter]
       @rotation_count += 1
     elsif @rotation_count == 4
-      @encrypted << @rotation_d[letter]
+      encrypted << @rotation_d[letter]
       @rotation_count = 1
     end
   end
