@@ -1,8 +1,4 @@
-gem 'minitest', '~>5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/cracker.rb'
-
+require_relative 'test_helper'
 class CrackTest  < MiniTest::Test
 
   def test_crack_message

@@ -18,20 +18,20 @@ class Encryptor
     @message
   end
 
-  def chars
+  def custom_chars
     @chars ||= ((' '..'z').to_a + ('😀'..'😾').to_a + ["🖕"])
   end
 
-  def encrypt(message = "", key = @key.key, date = @key.time)
-    @message = message
+  def encrypt(args)
+    @message = args[:message]
     @key = KeyGen.new(key.to_s, date)
     create_encryption_hash
     encryption_rotator(message)
   end
 
   def rotate(key)
-    rotated_characters = chars.rotate(key.to_i)
-    Hash[chars.zip(rotated_characters)]
+    rotated_characters = custom_chars.rotate(key.to_i)
+    Hash[custom_chars.zip(rotated_characters)]
   end
 
   def create_encryption_hash
@@ -59,8 +59,8 @@ class Encryptor
       elsif @rotation_count == 4
         @encrypted << @rotation_d[letter]
         @rotation_count = 1
-        end
       end
-      @encrypted.join
+    end
+    @encrypted.join
   end
 end

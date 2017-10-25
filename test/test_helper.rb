@@ -1,0 +1,7 @@
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'pry'
+require './lib/encryptor.rb'
+require './lib/keygen.rb'
+require './lib/decryptor.rb'
+require './lib/cracker.rb'

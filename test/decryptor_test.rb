@@ -1,9 +1,4 @@
-gem 'minitest', '~>5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/decryptor.rb'
-
-
+require_relative 'test_helper'
 class DecryptorTest < MiniTest::Test
 
   def test_init

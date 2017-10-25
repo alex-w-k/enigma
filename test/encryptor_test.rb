@@ -1,8 +1,4 @@
-gem 'minitest', '~>5.2'
-require 'minitest/autorun'
-require 'minitest/pride'
-require './lib/encryptor.rb'
-
+require_relative 'test_helper'
 class EncryptorTest < MiniTest::Test
 
   def test_init
@@ -14,8 +10,8 @@ class EncryptorTest < MiniTest::Test
 
   def test_chars
     e = Encryptor.new
-    assert e.chars
-    assert_equal 155, e.chars.count
+    assert e.custom_chars
+    assert_equal 155, e.custom_chars.count
   end
 
   def test_encryptor_can_accept_message_key_and_date
@@ -54,14 +50,18 @@ class EncryptorTest < MiniTest::Test
 
   def test_encryptor_can_encrypt_and_is_string
     e = Encryptor.new
-    refute_equal "hello", e.encrypt("hello")
+    refute_equal "hello", e.encrypt(message: "hello")
     assert_instance_of String, e.encrypt("hello")
   end
 
   def test_can_encryptor_encrypt_when_given_key_and_is_string
     e = Encryptor.new
-    refute_equal "hello", e.encrypt("hello", 12345)
+    refute_equal "hello", e.encrypt({message: "hello", key: '12345', date: '290317'})
     assert_instance_of String, e.encrypt("hello", 23456)
   end
 
+  def test_it_actually_encrypts_something_correctly
+    e = Encryptor.new
+    assert_equal "T😅😛😧😀", e.encrypt({message: "Hello", key: "12345", date: "290317"})
+  end
 end

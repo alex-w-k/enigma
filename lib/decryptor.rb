@@ -12,37 +12,37 @@ class Decryptor < Encryptor
   end
 
   def rotate(key)
-    rotated_characters = chars.rotate(key.to_i)
-    Hash[chars.zip(rotated_characters)]
+    rotated_characters = custom_chars.rotate(key.to_i)
+    Hash[custom_chars.zip(rotated_characters)]
   end
 
   def decryption_hash
-    @rotation_a = rotate(@incoming_key.key_a).invert
-    @rotation_b = rotate(@incoming_key.key_b).invert
-    @rotation_c = rotate(@incoming_key.key_c).invert
-    @rotation_d = rotate(@incoming_key.key_d).invert
+    @rotation_a = rotate(incoming_key.key_a).invert
+    @rotation_b = rotate(incoming_key.key_b).invert
+    @rotation_c = rotate(incoming_key.key_c).invert
+    @rotation_d = rotate(incoming_key.key_d).invert
   end
 
   def decryption_rotator(message)
-    @message = message
-    @decrypted = []
-    @rotation_count = 1
+    message = message
+    decrypted = []
+    rotation_count = 1
     letters = message.split("")
     letters.each do |letter|
-      if @rotation_count == 1
-        @decrypted << @rotation_a[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 2
-        @decrypted << @rotation_b[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 3
-        @decrypted << @rotation_c[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 4
-        @decrypted << @rotation_d[letter]
-        @rotation_count = 1
-        end
+      if rotation_count == 1
+        decrypted << @rotation_a[letter]
+        rotation_count += 1
+      elsif rotation_count == 2
+        decrypted << @rotation_b[letter]
+        rotation_count += 1
+      elsif rotation_count == 3
+        decrypted << @rotation_c[letter]
+        rotation_count += 1
+      elsif rotation_count == 4
+        decrypted << @rotation_d[letter]
+        rotation_count = 1
       end
-    @decrypted.join
+    end
+    decrypted.join
   end
 end

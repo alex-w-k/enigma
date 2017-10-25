@@ -35,22 +35,22 @@ class KeyGen
   end
 
   def key_a
-    key_a = @key[0..1]
+    key_a = key[0..1]
     key_a.to_i + offset[0].to_i
   end
 
   def key_b
-    key_b = @key[1..2]
+    key_b = key[1..2]
     key_b.to_i + offset[1].to_i
   end
 
   def key_c
-    key_c = @key[2..3]
+    key_c = key[2..3]
     key_c.to_i + offset[2].to_i
   end
 
   def key_d
-    key_d = @key[3..4]
+    key_d = key[3..4]
     key_d.to_i + offset[3].to_i
   end
 

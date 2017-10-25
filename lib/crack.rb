@@ -1,9 +1,5 @@
-require './lib/cracker'
-require './lib/keygen'
-
+require_relative 'test_helper'
 class Crack
-
-	args = *ARGV
 
 	cracker_instance = Cracker.new
 
