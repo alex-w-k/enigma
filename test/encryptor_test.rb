@@ -15,7 +15,7 @@ class EncryptorTest < MiniTest::Test
   end
 
   def test_encryptor_can_accept_message_key_and_date
-    e = Encryptor.new
+    e = Encryptor.new 
     e.encrypt({message: "This is soooooo secret", key: {key: '12345', date: '290317'}})
     assert_equal "This is soooooo secret", e.message
     assert_equal "12345", e.key.key
@@ -63,5 +63,14 @@ class EncryptorTest < MiniTest::Test
   def test_it_actually_encrypts_something_correctly
     e = Encryptor.new
     assert_equal "t😅😛😧😀", e.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
+  end
+
+  def test_it_raises_error_when_no_message_supplied
+    e = Encryptor.new
+
+    assert_raises RuntimeError do
+      e.encrypt()
+    end
+
   end
 end

@@ -23,7 +23,7 @@ class Encryptor
   end
 
   def encrypt(args = {})
-    @message = args[:message]
+    args[:message] ? @message = args[:message] : message_error
     @key = KeyGen.new(args[:key])
     create_encryption_hash
     encryption_rotator(message)
@@ -62,5 +62,11 @@ class Encryptor
       end
     end
     @encrypted.join
+  end
+
+  private
+
+  def message_error
+    raise RuntimeError.new('Message not supplied, please check syntax and try again')
   end
 end
