@@ -50,5 +50,4 @@ class Decryptor < Encryptor
       @rotation_count = 1
     end
   end
-
 end

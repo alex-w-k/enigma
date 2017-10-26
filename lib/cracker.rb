@@ -34,7 +34,7 @@ class Cracker < Decryptor
     end
     key = i
     @decrypted.join
-    puts "#{@decrypted.join} cracked with key #{key}"
+    "#{@decrypted.join} cracked with key #{key}"
   end
 
 end
