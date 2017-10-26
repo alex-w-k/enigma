@@ -8,13 +8,13 @@ class KeyGen
               :key_d
 
   def initialize(args = {})
-    args[:key] ? @key = args[:key] : @key = self.key_generator
+    args[:key]  ? @key = args[:key] : @key = self.key_generator
     args[:date] ? @date = args[:date] : @date = self.time
   end
 
   def key_generator
-    chars = *(0..9)
-    (1..5).map {chars.sample}.join
+    nums = *(0..9)
+    (1..5).map {nums.sample}.join
   end
 
   def date_entry(date = self.time)

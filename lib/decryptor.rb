@@ -17,6 +17,24 @@ class Decryptor < Encryptor
     Hash[custom_chars.zip(rotated_characters)]
   end
 
+  def decryption_hash
+    @rotation_a = rotate(incoming_key.key_a).invert
+    @rotation_b = rotate(incoming_key.key_b).invert
+    @rotation_c = rotate(incoming_key.key_c).invert
+    @rotation_d = rotate(incoming_key.key_d).invert
+  end
+
+  def decryption_rotator(message)
+    message = message
+    @decrypted = []
+    @rotation_count = 1
+    letters = message.split("")
+    letters.each do |letter|
+      decrypt_and_rotate(@decrypted, letter)
+    end
+    @decrypted.join
+  end
+
   def decrypt_and_rotate(decrypted, letter)
     if @rotation_count == 1
       decrypted << @rotation_a[letter]
@@ -33,21 +51,4 @@ class Decryptor < Encryptor
     end
   end
 
-  def decryption_hash
-    @rotation_a = rotate(incoming_key.key_a).invert
-    @rotation_b = rotate(incoming_key.key_b).invert
-    @rotation_c = rotate(incoming_key.key_c).invert
-    @rotation_d = rotate(incoming_key.key_d).invert
-  end
-
-  def decryption_rotator(message)
-    message = message
-    decrypted = []
-    @rotation_count = 1
-    letters = message.split("")
-    letters.each do |letter|
-      decrypt_and_rotate(decrypted, letter)
-    end
-    decrypted.join
-  end
 end

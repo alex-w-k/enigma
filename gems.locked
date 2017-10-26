@@ -1,13 +1,34 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    celluloid (0.17.3)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.6)
+      timers (>= 4.1.1)
+    hitimes (1.2.6)
     minitest (5.10.3)
+    timers (4.1.2)
+      hitimes
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  celluloid
   minitest
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.0.pre.3

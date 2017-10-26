@@ -9,6 +9,6 @@ class CrackTest  < MiniTest::Test
 
   def test_crack_final
     cracker = Cracker.new
-    assert_equal "this is a test ..end..", cracker.crack("&.😭😱😋/😷Zm😟😸😣%:`G:+😲😢:😌", 280317)
+    assert_equal "this is a test ..end.. cracked with key 2177", cracker.crack("z😄😇-&😅😑ug7😒🖕y😐9😈4😁😌😾4E", 251017)
   end
 end

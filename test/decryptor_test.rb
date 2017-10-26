@@ -35,3 +35,6 @@ class DecryptorTest < MiniTest::Test
     assert_equal @decrypt.incoming_key , @decrypt.incoming_key
   end
 end
+e = Encryptor.new
+puts e.encrypt({message: 'this is a test ..end..', key:{}})
+
