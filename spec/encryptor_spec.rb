@@ -15,4 +15,12 @@ describe Encryptor do
     end
   end
 
+  describe '#encrypt' do
+    it 'correctly takes arguments and saves them properly' do
+      encrypt.encrypt({message: "This is soooooo secret", key: {key: '12345', date: '290317'}})
+      expect(encrypt.message).to eq('This is soooooo secret')
+      expect(encrypt.key.key).to eq('12345')
+    end
+  end
+
 end
