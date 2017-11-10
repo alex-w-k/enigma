@@ -27,6 +27,12 @@ describe Encryptor do
       acutal = encrypt.encrypt({message: "hello", key: {key: '12345', date: '290317'}})
       expect(expected).to eq(acutal)
     end
+
+    context 'raises error' do
+      it 'when no message is supplied' do
+        expect { encrypt.encrypt }.to raise_error('Message not supplied, please check syntax and try again')
+      end
+    end
   end
 
 end
